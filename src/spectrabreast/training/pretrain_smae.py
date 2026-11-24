@@ -173,7 +173,11 @@ def train_smae_from_config(
     optimizer = torch.optim.AdamW(
         model.parameters(), lr=base_lr, weight_decay=float(t_cfg.get("weight_decay", 1e-4))
     )
-    scaler = torch.amp.GradScaler("cuda", enabled=use_scaler)
+    scaler = (
+        torch.amp.GradScaler("cuda", enabled=use_scaler)
+        if hasattr(torch.amp, "GradScaler")
+        else torch.cuda.amp.GradScaler(enabled=use_scaler)
+    )
 
     out_dir = root / cfg["logging"]["output_dir"]
     fig_dir = out_dir / "figures"
