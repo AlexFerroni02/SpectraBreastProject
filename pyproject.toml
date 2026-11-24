@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "spectrabreast"
+version = "0.1.0"
+description = "Self-Supervised Raman Spectroscopy Framework for SPECTRA-BREAST (Fingerprint & CH High-Wavenumber)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.26",
+    "scipy>=1.11",
+    "h5py>=3.10",
+    "pandas>=2.1",
+    "openpyxl>=3.1",
+    "pyyaml>=6.0",
+    "scikit-learn>=1.3",
+    "matplotlib>=3.8",
+    "tqdm>=4.66",
+    "torch>=2.2",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]

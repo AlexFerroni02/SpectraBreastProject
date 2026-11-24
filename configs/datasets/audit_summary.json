@@ -1,0 +1,318 @@
+[
+  {
+    "dataset": "spectrabreast_hw (15 breast maps, 785nm)",
+    "role": "pretrain_HW",
+    "n_files": 15,
+    "n_spectra": 136801,
+    "n_points": [
+      1015
+    ],
+    "wavenumber_min": 2488.85,
+    "wavenumber_max": 3487.65,
+    "common_overlap_cm1": [
+      2763.91,
+      3258.78
+    ],
+    "preprocessing_state": "MIXED (6 RAW files, 9 Post-ALS files -> requires per-file check)",
+    "label_granularity": "Weak map-level (Healthy/Tumor)",
+    "FP_strict_650_1750": false,
+    "FP_usable": false,
+    "CH_core_2800_3045": true,
+    "HW_extended_2765_3250": true
+  },
+  {
+    "dataset": "pdo_hw_maps (6 organoid maps, 532nm)",
+    "role": "pretrain_HW",
+    "n_files": 6,
+    "n_spectra": 194444,
+    "n_points": [
+      1015
+    ],
+    "wavenumber_min": 2603.29,
+    "wavenumber_max": 3915.42,
+    "common_overlap_cm1": [
+      2614.74,
+      3906.18
+    ],
+    "preprocessing_state": "MIXED (5 RAW files, 1 Post-ALS files -> requires per-file check)",
+    "label_granularity": "Single-class (Tumoral PDO)",
+    "FP_strict_650_1750": false,
+    "FP_usable": false,
+    "CH_core_2800_3045": true,
+    "HW_extended_2765_3250": true
+  },
+  {
+    "dataset": "riverd_meat_hw (60 ref maps, 671nm)",
+    "role": "pretrain_HW",
+    "n_files": 60,
+    "n_spectra": 1200,
+    "n_points": [
+      741
+    ],
+    "wavenumber_min": 2520.0,
+    "wavenumber_max": 4000.0,
+    "common_overlap_cm1": [
+      2520.0,
+      4000.0
+    ],
+    "preprocessing_state": "MIXED (7 RAW files, 53 Post-ALS files -> requires per-file check)",
+    "label_granularity": "Unlabeled",
+    "FP_strict_650_1750": false,
+    "FP_usable": false,
+    "CH_core_2800_3045": true,
+    "HW_extended_2765_3250": true
+  },
+  {
+    "dataset": "riverd_oral_hw (Oral Tumor Probe HW)",
+    "role": "downstream_HW",
+    "n_files": 4,
+    "n_spectra": 8422,
+    "n_points": [
+      701
+    ],
+    "wavenumber_min": 2600.0,
+    "wavenumber_max": 4000.0,
+    "common_overlap_cm1": [
+      2600.0,
+      4000.0
+    ],
+    "preprocessing_state": "3 versions provided: c (Calibrated), pc (Probe-Corrected), bc (Baseline-Corrected)",
+    "label_granularity": "Spectrum-level (5,899 Normal / 2,523 Tumor; 186 samples, 4 cohorts)",
+    "FP_strict_650_1750": false,
+    "FP_usable": false,
+    "CH_core_2800_3045": true,
+    "HW_extended_2765_3250": true
+  },
+  {
+    "dataset": "trophy_jena (10 breast maps, Full-Range)",
+    "role": "pretrain_FR",
+    "n_files": 10,
+    "n_spectra": 115913,
+    "n_points": [
+      1024,
+      820
+    ],
+    "wavenumber_min": 200.0,
+    "wavenumber_max": 3200.0,
+    "common_overlap_cm1": [
+      648.68,
+      3050.44
+    ],
+    "preprocessing_state": "Both Raw/ (200-3200 cm-1) and Preprocessed/ (648.68-3050.44 cm-1) available",
+    "label_granularity": "Pixel-level (2 patients only -> restricted to Pre-Training)",
+    "FP_strict_650_1750": true,
+    "FP_usable": true,
+    "CH_core_2800_3045": true,
+    "HW_extended_2765_3250": false
+  },
+  {
+    "dataset": "dataset_renzo (Murine Bone, Full-Range)",
+    "role": "downstream_FR",
+    "n_files": 1,
+    "n_spectra": 3200,
+    "n_points": [
+      2670
+    ],
+    "wavenumber_min": 380.0,
+    "wavenumber_max": 3049.0,
+    "common_overlap_cm1": [
+      380.0,
+      3049.0
+    ],
+    "preprocessing_state": "Pre-cleaned (Baseline-subtracted & normalized)",
+    "label_granularity": "Sample-grouped (47 mice: skull/femur/tibia & WT/Rankl-ko/oc-oc/HSCT)",
+    "FP_strict_650_1750": true,
+    "FP_usable": true,
+    "CH_core_2800_3045": true,
+    "HW_extended_2765_3250": false
+  },
+  {
+    "dataset": "prague_raman (36 CSVs, SERS Nanourchins, Full-Range)",
+    "role": "downstream_FR",
+    "n_files": 36,
+    "n_spectra": 1892,
+    "n_points": [
+      2090
+    ],
+    "wavenumber_min": 100.0,
+    "wavenumber_max": 4278.0,
+    "common_overlap_cm1": [
+      100.0,
+      4278.0
+    ],
+    "preprocessing_state": "Baseline-corrected SERS (strong FP, negligible HW)",
+    "label_granularity": "Spectrum-level (12 functionalized SERS groups)",
+    "FP_strict_650_1750": true,
+    "FP_usable": true,
+    "CH_core_2800_3045": true,
+    "HW_extended_2765_3250": true
+  },
+  {
+    "dataset": "deepr (Paired Noisy/Clean FP)",
+    "role": "pretrain_FP",
+    "n_files": 2,
+    "n_spectra": 172312,
+    "n_points": [
+      500
+    ],
+    "wavenumber_min": 498.26,
+    "wavenumber_max": 1799.9,
+    "common_overlap_cm1": [
+      498.26,
+      1799.9
+    ],
+    "preprocessing_state": "Pre-cleaned / Scaled (paired 0.1s noisy & 1.0s clean)",
+    "label_granularity": "Unlabeled (denoising pairs)",
+    "FP_strict_650_1750": true,
+    "FP_usable": true,
+    "CH_core_2800_3045": false,
+    "HW_extended_2765_3250": false
+  },
+  {
+    "dataset": "raman_mae: Dataset_2_231CTCLM_updat",
+    "role": "pretrain_FP",
+    "n_files": 1,
+    "n_spectra": 23530,
+    "n_points": [
+      871
+    ],
+    "wavenumber_min": 600.46,
+    "wavenumber_max": 1963.25,
+    "common_overlap_cm1": [
+      600.46,
+      1963.25
+    ],
+    "preprocessing_state": "L2-normalized",
+    "label_granularity": "Unlabeled SSL pretrain",
+    "FP_strict_650_1750": true,
+    "FP_usable": true,
+    "CH_core_2800_3045": false,
+    "HW_extended_2765_3250": false
+  },
+  {
+    "dataset": "raman_mae: Dataset_3B_variables_imm",
+    "role": "pretrain_FP",
+    "n_files": 1,
+    "n_spectra": 11099,
+    "n_points": [
+      721
+    ],
+    "wavenumber_min": 597.32,
+    "wavenumber_max": 1798.91,
+    "common_overlap_cm1": [
+      597.32,
+      1798.91
+    ],
+    "preprocessing_state": "L2-normalized",
+    "label_granularity": "Unlabeled SSL pretrain",
+    "FP_strict_650_1750": true,
+    "FP_usable": true,
+    "CH_core_2800_3045": false,
+    "HW_extended_2765_3250": false
+  },
+  {
+    "dataset": "raman_mae: External_sharing_variabl",
+    "role": "pretrain_FP",
+    "n_files": 1,
+    "n_spectra": 18092,
+    "n_points": [
+      656
+    ],
+    "wavenumber_min": 650.86,
+    "wavenumber_max": 1749.7,
+    "common_overlap_cm1": [
+      650.86,
+      1749.7
+    ],
+    "preprocessing_state": "L2-normalized",
+    "label_granularity": "Unlabeled SSL pretrain",
+    "FP_strict_650_1750": true,
+    "FP_usable": true,
+    "CH_core_2800_3045": false,
+    "HW_extended_2765_3250": false
+  },
+  {
+    "dataset": "spectrabreast_fp (4 breast maps, 785nm)",
+    "role": "pretrain_FP",
+    "n_files": 4,
+    "n_spectra": 52992,
+    "n_points": [
+      1015
+    ],
+    "wavenumber_min": 660.22,
+    "wavenumber_max": 1759.36,
+    "common_overlap_cm1": [
+      660.48,
+      1759.16
+    ],
+    "preprocessing_state": "RAW detector counts (4/4 files need Despike+SavGol+ALS)",
+    "label_granularity": "Weak map-level (Tumoral TT)",
+    "FP_strict_650_1750": true,
+    "FP_usable": true,
+    "CH_core_2800_3045": false,
+    "HW_extended_2765_3250": false
+  },
+  {
+    "dataset": "bacteria_id (30 bacterial isolates)",
+    "role": "downstream_FP",
+    "n_files": 5,
+    "n_spectra": 78500,
+    "n_points": [
+      1000
+    ],
+    "wavenumber_min": 381.98,
+    "wavenumber_max": 1792.4,
+    "common_overlap_cm1": [
+      381.98,
+      1792.4
+    ],
+    "preprocessing_state": "Pre-cleaned / Scaled [0, 1] (3k finetune + 3k test active)",
+    "label_granularity": "Spectrum-level (30 classes)",
+    "FP_strict_650_1750": true,
+    "FP_usable": true,
+    "CH_core_2800_3045": false,
+    "HW_extended_2765_3250": false
+  },
+  {
+    "dataset": "ibd (ICSM Clinical Cohort)",
+    "role": "downstream_FP",
+    "n_files": 1,
+    "n_spectra": 228,
+    "n_points": [
+      1216
+    ],
+    "wavenumber_min": 403.89,
+    "wavenumber_max": 1754.26,
+    "common_overlap_cm1": [
+      403.89,
+      1754.26
+    ],
+    "preprocessing_state": "Baseline-corrected (228 patient-averaged spectra from 962 replicates)",
+    "label_granularity": "Patient-level (77 Healthy HC vs 151 IBD)",
+    "FP_strict_650_1750": true,
+    "FP_usable": true,
+    "CH_core_2800_3045": false,
+    "HW_extended_2765_3250": false
+  },
+  {
+    "dataset": "sers_plasma (88 plasma samples)",
+    "role": "downstream_FP",
+    "n_files": 1,
+    "n_spectra": 2200,
+    "n_points": [
+      1024
+    ],
+    "wavenumber_min": 367.22,
+    "wavenumber_max": 2082.7,
+    "common_overlap_cm1": [
+      367.22,
+      2082.7
+    ],
+    "preprocessing_state": "RAW CCD counts (SERS substrate)",
+    "label_granularity": "Spectrum-level (28 Control vs 60 Disease samples)",
+    "FP_strict_650_1750": true,
+    "FP_usable": true,
+    "CH_core_2800_3045": false,
+    "HW_extended_2765_3250": false
+  }
+]

@@ -1,0 +1,82 @@
+file;relative_path;spectral_count;source;status;Instrument;Group
+CMA64  map hd 532 CH confocal PDO2.h5;CMA64  map hd 532 CH confocal PDO2.h5;47861;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;PDO_Raman_Maps
+CMA64  map hd 532 CH.h5;CMA64  map hd 532 CH.h5;38335;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;PDO_Raman_Maps
+PC61  map hd 532 CH 01.h5;PC61  map hd 532 CH 01.h5;17931;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;PDO_Raman_Maps
+PC61  map hd 532 CH 03.h5;PC61  map hd 532 CH 03.h5;32761;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;PDO_Raman_Maps
+PC61  map hd 532 CH 04.h5;PC61  map hd 532 CH 04.h5;51076;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;PDO_Raman_Maps
+rxh1.h5;rxh1.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh10.h5;rxh10.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh11.h5;rxh11.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh12.h5;rxh12.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh13.h5;rxh13.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh14.h5;rxh14.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh15.h5;rxh15.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh16.h5;rxh16.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh17.h5;rxh17.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh18.h5;rxh18.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh19.h5;rxh19.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh2.h5;rxh2.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh20.h5;rxh20.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh21.h5;rxh21.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh22.h5;rxh22.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh23.h5;rxh23.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh24.h5;rxh24.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh25.h5;rxh25.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh26.h5;rxh26.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh27.h5;rxh27.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh28.h5;rxh28.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh29.h5;rxh29.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh3.h5;rxh3.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh30.h5;rxh30.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh31.h5;rxh31.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh32.h5;rxh32.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh33.h5;rxh33.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh34.h5;rxh34.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh35.h5;rxh35.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh36.h5;rxh36.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh37.h5;rxh37.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh38.h5;rxh38.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh39.h5;rxh39.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh4.h5;rxh4.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh40.h5;rxh40.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh41.h5;rxh41.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh42.h5;rxh42.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh43.h5;rxh43.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh44.h5;rxh44.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh45.h5;rxh45.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh46.h5;rxh46.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh47.h5;rxh47.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh48.h5;rxh48.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh49.h5;rxh49.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh5.h5;rxh5.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh50.h5;rxh50.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh51.h5;rxh51.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh52.h5;rxh52.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh53.h5;rxh53.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh54.h5;rxh54.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh55.h5;rxh55.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh56.h5;rxh56.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh57.h5;rxh57.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh58.h5;rxh58.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh59.h5;rxh59.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh6.h5;rxh6.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh60.h5;rxh60.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh7.h5;rxh7.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh8.h5;rxh8.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+rxh9.h5;rxh9.h5;20;attribute ENTRY/data:spectral_count;ok;RiverD_device_v1;Meat_sample
+SB003HT _map_ 785_3sec1_50Lx_CH_01.h5;SB003HT _map_ 785_3sec1_50Lx_CH_01.h5;2624;dataset /ENTRY/data/spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB003TT 2.2 _map_ 785_3sec1_50Lx_CH_01.h5;SB003TT 2.2 _map_ 785_3sec1_50Lx_CH_01.h5;7708;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB004HT _map_ 785_3sec1_50Lx_CH_01.h5;SB004HT _map_ 785_3sec1_50Lx_CH_01.h5;7176;dataset /ENTRY/data/spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB004TT 2 _map_ 785_3sec1_50Lx_CH_01.h5;SB004TT 2 _map_ 785_3sec1_50Lx_CH_01.h5;10353;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB005HT _map_ 785_3sec1_50Lx_CH_01.h5;SB005HT _map_ 785_3sec1_50Lx_CH_01.h5;10593;dataset /ENTRY/data/spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB006TT_map_ 785_3sec1_50Lx_CH_01.h5;SB006TT_map_ 785_3sec1_50Lx_CH_01.h5;9945;dataset /ENTRY/data/spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB008HT _map_ 785_3sec1_50Lx_CH_01.h5;SB008HT _map_ 785_3sec1_50Lx_CH_01.h5;8585;dataset /ENTRY/data/spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB008TT _map_ 785_3sec1_50Lx_CH_01.h5;SB008TT _map_ 785_3sec1_50Lx_CH_01.h5;9020;dataset /ENTRY/data/spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB015HT 2_map_ 785_3sec1_50Lx_CH_01.h5;SB015HT 2_map_ 785_3sec1_50Lx_CH_01.h5;10878;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB015HT 3 _map_ 785_3sec1_50Lx_CH_01.h5;SB015HT 3 _map_ 785_3sec1_50Lx_CH_01.h5;10948;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB015TT 2_map_ 785_3sec1_50Lx_CH_01.h5;SB015TT 2_map_ 785_3sec1_50Lx_CH_01.h5;10791;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB021TT_map_ 785_3sec1_50Lx_CH_0.h5;SB021TT_map_ 785_3sec1_50Lx_CH_0.h5;6867;dataset /ENTRY/data/spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB039TT2 _map_ 785_3sec1_50Lx_CH_01.h5;SB039TT2 _map_ 785_3sec1_50Lx_CH_01.h5;10010;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB044TT _map_ 785_3sec1_50Lx_CH_01.h5;SB044TT _map_ 785_3sec1_50Lx_CH_01.h5;11016;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+SB047TT _map_ 785_3sec1_50Lx_CH_01.h5;SB047TT _map_ 785_3sec1_50Lx_CH_01.h5;10287;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;Breast_Tissue_Maps
+test map hd line 532 CH.h5;test map hd line 532 CH.h5;6480;attribute ENTRY/data:spectral_count;ok;Renishaw InVia;PDO_Raman_Maps

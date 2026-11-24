@@ -1,0 +1,59 @@
+# ==============================================================================
+# SPECTRA-BREAST — 1D-ResNet-34 (Barlow Twins) Multi-Regime Pre-Training Config
+# Exact Pure PyTorch port of `Deliverable/Pretrain/Barlow_Twins_Resnet_34.ipynb`:
+# - ResNet-34 + AvgPool1d(2) + Flatten (8,192 features, no GAP!)
+# - 3-layer Projector [2048, 2048, 2048], lambda_bt = 5e-3
+# - Batch size = 512, Epochs = 200, AdamW (lr = 1e-3)
+# - Trained on all 716,686 unique spectra (`FP + HW + FR`, 1,000 channels)
+# ==============================================================================
+
+experiment_name: "barlow_twins_resnet34_all_1000pt"
+seed: 42
+
+data:
+  npz_path: "data/02_ready/pretrain/CNN/pretrain_cnn_all_1000.npz"
+  regime: "Multi-Regime (FP + HW + FR)"
+  sampling_alpha: 0.5       # Square-root balancing across all 10 sources
+  val_fraction: 0.01
+  num_workers: 4
+
+model:
+  backbone: "resnet34"
+  in_channels: 1
+  seq_len: 1000
+  pool_mode: "avgpool2_flatten"  # Exact ResNet34Old AvgPool1d(2) + Flatten (8,192 dims)
+  projector_dims: [2048, 2048, 2048]
+  lambda_bt: 0.005
+
+augmentations:
+  # Faithful GPU-vectorized port of `RamanAugmentorTensor` (Cell 8) + physical baseline/shot noise
+  max_shift_pts: 5.0        # wavenumber_shift_range = 5
+  blur_kernel_max: 5        # average_blur kernel in [2..5]
+  zero_prob: 0.02           # random_zero prob = 0.02
+  scale_min: 0.90           # random_scale [0.9, 1.1]
+  scale_max: 1.10
+  slope_scale: 0.06         # subtle optical envelope
+  tilt_scale: 0.025         # subtle residual fluorescence curvature
+  read_noise: 0.010         # noise_std = 0.01
+  shot_noise: 0.015         # heteroscedastic photon shot noise
+  p_cutout: 0.25            # optional local region dropout
+  cutout_max_width: 40
+
+training:
+  epochs: 200               # Exact Barlow_Twins_Resnet_34.ipynb (Cell 20)
+  batch_size: 512           # Exact Barlow_Twins_Resnet_34.ipynb (Cell 7)
+  # 300,000 balanced samples/epoch (~586 steps/epoch, matching the 596 steps/epoch of the thesis V100 run!);
+  # set to null for a full 716,686-spectrum pass per epoch on faster GPUs.
+  samples_per_epoch: 300000
+  optimizer: "adamw"
+  lr: 1.0e-3                # Default Keras AdamW lr from Barlow_Twins_Resnet_34.ipynb Cell 19
+  min_lr: 1.0e-5
+  weight_decay: 1.0e-4
+  warmup_epochs: 5
+  grad_clip_norm: 2.0
+  use_amp: true             # fp16 on Tesla V100 (3-4x faster than TF fp32!), bf16 on A100/H100
+
+logging:
+  output_dir: "experiments/pretrain_barlow_twins_resnet34_all"
+  save_every_epochs: 25
+  plot_crosscorr_epochs: [1, 50, 100, 150, 200]

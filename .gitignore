@@ -1,0 +1,58 @@
+# ==============================================================================
+# SPECTRA-BREAST .gitignore (GitHub + HPC JupyterLab Ready)
+# Never commit heavy spectral binaries, model checkpoints, or local caches!
+# ==============================================================================
+
+# 1. Spectral Data Lake (upload data/02_ready/ directly to HPC storage)
+data/00_raw/*
+data/01_interim/*
+data/02_ready/*
+!data/**/.gitkeep
+
+# 2. Training Runs, Checkpoints, Duplicate Outputs & Heavy Reference PDFs
+experiments/*
+!experiments/.gitkeep
+outputs/*
+!outputs/.gitkeep
+docs/thesis_references/
+docs/DELIVERABLE 3.1 - SPECTRA-BREAST.pdf
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.onnx
+*.h5
+*.hdf5
+*.npz
+*.npy
+*.mat
+*.bin
+
+# 3. Python, Virtual Environments & Build Artifacts
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# 4. JupyterLab, HPC Logs, Monitoring & OS Junk
+.ipynb_checkpoints/
+wandb/
+mlruns/
+runs/
+*.log
+*.out
+*.err
+slurm-*.out
+.DS_Store
+Thumbs.db
+.env
+*.tmp
+*.bak

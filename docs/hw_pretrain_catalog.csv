@@ -1,0 +1,82 @@
+cohort,filename,label,histology,icd10,donor_id,sample_id,laser_nm,exp_time_s,grid_shape,n_spectra,wn_min,wn_max,n_channels,wn_resolution,prep_state,has_optical,size_mb
+pdo_ch_maps,CMA64  map hd 532 CH confocal PDO2.h5,Tumoral PDO,IDC,C50.9,N/A,CMA64,532,0.1,209x229,47861,2614.7,3915.4,1015,1.283,Post-ALS (Clean),True,82.73
+pdo_ch_maps,CMA64  map hd 532 CH.h5,Tumoral PDO,IDC,C50.9,N/A,CMA64,532,0.1,205x187,38335,2603.3,3906.2,1015,1.285,RAW (Needs ALS),True,89.49
+pdo_ch_maps,PC61  map hd 532 CH 01.h5,Tumoral PDO,IDC,C50.9,N/A,PC61,532,0.1,129x139,17931,2603.6,3906.4,1015,1.285,RAW (Needs ALS),True,44.99
+pdo_ch_maps,PC61  map hd 532 CH 03.h5,Tumoral PDO,IDC,C50.9,N/A,PC61,532,0.1,181x181,32761,2603.5,3906.4,1015,1.285,RAW (Needs ALS),True,77.17
+pdo_ch_maps,PC61  map hd 532 CH 04.h5,Tumoral PDO,IDC,C50.9,N/A,PC61,532,0.1,226x226,51076,2603.5,3906.4,1015,1.285,RAW (Needs ALS),True,116.06
+pdo_ch_maps,test map hd line 532 CH.h5,Tumoral PDO,IDC,C50.9,N/A,CMA64,532,0.1,80x81,6480,2603.3,3906.2,1015,1.285,RAW (Needs ALS),True,18.73
+riverd_meat_ch,rxh1.h5,N/A,N/A,N/A,N/A,1,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh10.h5,N/A,N/A,N/A,N/A,10,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh11.h5,N/A,N/A,N/A,N/A,11,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh12.h5,N/A,N/A,N/A,N/A,12,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh13.h5,N/A,N/A,N/A,N/A,13,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh14.h5,N/A,N/A,N/A,N/A,14,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh15.h5,N/A,N/A,N/A,N/A,15,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh16.h5,N/A,N/A,N/A,N/A,16,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh17.h5,N/A,N/A,N/A,N/A,17,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh18.h5,N/A,N/A,N/A,N/A,18,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh19.h5,N/A,N/A,N/A,N/A,19,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh2.h5,N/A,N/A,N/A,N/A,2,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh20.h5,N/A,N/A,N/A,N/A,20,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh21.h5,N/A,N/A,N/A,N/A,21,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh22.h5,N/A,N/A,N/A,N/A,22,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh23.h5,N/A,N/A,N/A,N/A,23,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh24.h5,N/A,N/A,N/A,N/A,24,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh25.h5,N/A,N/A,N/A,N/A,25,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh26.h5,N/A,N/A,N/A,N/A,26,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh27.h5,N/A,N/A,N/A,N/A,27,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh28.h5,N/A,N/A,N/A,N/A,28,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh29.h5,N/A,N/A,N/A,N/A,29,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh3.h5,N/A,N/A,N/A,N/A,3,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh30.h5,N/A,N/A,N/A,N/A,30,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh31.h5,N/A,N/A,N/A,N/A,31,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh32.h5,N/A,N/A,N/A,N/A,32,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh33.h5,N/A,N/A,N/A,N/A,33,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh34.h5,N/A,N/A,N/A,N/A,34,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh35.h5,N/A,N/A,N/A,N/A,35,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh36.h5,N/A,N/A,N/A,N/A,36,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh37.h5,N/A,N/A,N/A,N/A,37,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh38.h5,N/A,N/A,N/A,N/A,38,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh39.h5,N/A,N/A,N/A,N/A,39,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh4.h5,N/A,N/A,N/A,N/A,4,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh40.h5,N/A,N/A,N/A,N/A,40,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh41.h5,N/A,N/A,N/A,N/A,41,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh42.h5,N/A,N/A,N/A,N/A,42,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh43.h5,N/A,N/A,N/A,N/A,43,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh44.h5,N/A,N/A,N/A,N/A,44,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh45.h5,N/A,N/A,N/A,N/A,45,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh46.h5,N/A,N/A,N/A,N/A,46,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh47.h5,N/A,N/A,N/A,N/A,47,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh48.h5,N/A,N/A,N/A,N/A,48,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh49.h5,N/A,N/A,N/A,N/A,49,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh5.h5,N/A,N/A,N/A,N/A,5,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh50.h5,N/A,N/A,N/A,N/A,50,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh51.h5,N/A,N/A,N/A,N/A,51,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh52.h5,N/A,N/A,N/A,N/A,52,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh53.h5,N/A,N/A,N/A,N/A,53,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh54.h5,N/A,N/A,N/A,N/A,54,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh55.h5,N/A,N/A,N/A,N/A,55,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh56.h5,N/A,N/A,N/A,N/A,56,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh57.h5,N/A,N/A,N/A,N/A,57,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh58.h5,N/A,N/A,N/A,N/A,58,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh59.h5,N/A,N/A,N/A,N/A,59,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh6.h5,N/A,N/A,N/A,N/A,6,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh60.h5,N/A,N/A,N/A,N/A,60,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh7.h5,N/A,N/A,N/A,N/A,7,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh8.h5,N/A,N/A,N/A,N/A,8,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+riverd_meat_ch,rxh9.h5,N/A,N/A,N/A,N/A,9,671,0.1,1x20,20,2520.0,4000.0,741,2.0,RAW (Needs ALS),False,0.15
+spectrabreast_ch,SB003HT _map_ 785_3sec1_50Lx_CH_01.h5,Healty tissue,IDC,C50.9,SB003,SB003HT,785,2,32x82,2624,2489.0,3258.9,1015,0.759,RAW (Needs ALS),True,11.57
+spectrabreast_ch,SB003TT 2.2 _map_ 785_3sec1_50Lx_CH_01.h5,Tumoral tissue,IDC,C50.9,SB003,SB003TT,785,2,82x94,7708,2763.9,3487.6,1015,0.714,RAW (Needs ALS),True,17.12
+spectrabreast_ch,SB004HT _map_ 785_3sec1_50Lx_CH_01.h5,Healty tissue,IDC,C50.9,SB004,SB004HT,785,2,52x138,7176,2488.9,3258.9,1015,0.759,RAW (Needs ALS),True,18.6
+spectrabreast_ch,SB004TT 2 _map_ 785_3sec1_50Lx_CH_01.h5,Tumoral tissue,IDC,C50.9,SB004,SB004TT,785,2,119x87,10353,2763.9,3487.6,1015,0.714,RAW (Needs ALS),True,22.9
+spectrabreast_ch,SB005HT _map_ 785_3sec1_50Lx_CH_01.h5,Tumoral tissue,IDC,C50.9,SB005,SB005HT,785,2,107x99,10593,2489.0,3258.9,1015,0.759,RAW (Needs ALS),True,29.09
+spectrabreast_ch,SB006TT_map_ 785_3sec1_50Lx_CH_01.h5,Healty tissue,IDC,C50.9,SB006,SB006TT,785,2,117x85,9945,2489.0,3258.9,1015,0.759,RAW (Needs ALS),True,27.16
+spectrabreast_ch,SB008HT _map_ 785_3sec1_50Lx_CH_01.h5,Tumoral tissue,IDC,C50.9,SB008,SB008HT,785,2,85x101,8585,2488.9,3258.8,1015,0.759,RAW (Needs ALS),True,25.15
+spectrabreast_ch,SB008TT _map_ 785_3sec1_50Lx_CH_01.h5,Tumoral tissue,IDC,C50.9,SB008,SB008TT,785,2,82x110,9020,2489.0,3258.9,1015,0.759,RAW (Needs ALS),True,20.59
+spectrabreast_ch,SB015HT 2_map_ 785_3sec1_50Lx_CH_01.h5,Healty tissue,IDC,C50.9,SB015,SB015HT,785,2,111x98,10878,2763.9,3487.6,1015,0.714,Post-ALS (Clean),True,23.45
+spectrabreast_ch,SB015HT 3 _map_ 785_3sec1_50Lx_CH_01.h5,Healty tissue,IDC,C50.9,SB015,SB015HT,785,2,92x119,10948,2763.8,3487.6,1015,0.714,RAW (Needs ALS),True,23.81
+spectrabreast_ch,SB015TT 2_map_ 785_3sec1_50Lx_CH_01.h5,Tumoral tissue,IDC,C50.9,SB015,SB015TT,785,2,99x109,10791,2763.8,3487.5,1015,0.714,RAW (Needs ALS),True,23.54
+spectrabreast_ch,SB021TT_map_ 785_3sec1_50Lx_CH_0.h5,Healty tissue,IDC,C50.9,SB021,SB021TT,785,2,109x63,6867,2488.9,3258.8,1015,0.759,RAW (Needs ALS),True,15.78
+spectrabreast_ch,SB039TT2 _map_ 785_3sec1_50Lx_CH_01.h5,Tumoral tissue,IDC,C50.9,SB039,SB039TT,785,2,77x130,10010,2763.9,3487.6,1015,0.714,RAW (Needs ALS),True,22.84
+spectrabreast_ch,SB044TT _map_ 785_3sec1_50Lx_CH_01.h5,Tumoral tissue,IDC,C50.9,SB044,SB044TT,785,2,102x108,11016,2763.8,3487.5,1015,0.714,RAW (Needs ALS),True,22.59
+spectrabreast_ch,SB047TT _map_ 785_3sec1_50Lx_CH_01.h5,Tumoral tissue,IDC,C50.9,SB047,SB047TT,785,2,81x127,10287,2763.8,3487.6,1015,0.714,RAW (Needs ALS),True,21.91

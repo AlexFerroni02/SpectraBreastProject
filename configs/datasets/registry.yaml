@@ -1,0 +1,215 @@
+# SPECTRA-BREAST — Unified Dataset Registry
+# Symmetrical Data Lake architecture organized by Role (pretrain / downstream) and Spectral Region (FP / HW / FR):
+# - data/00_raw/pretrain/FP/     (Fingerprint ~367-2082 cm-1 datasets for SSL Pre-training)
+# - data/00_raw/pretrain/HW/     (High-Wavenumber ~2488-4000 cm-1 datasets for SSL Pre-training)
+# - data/00_raw/pretrain/FR/     (Full-Range ~648-3050 cm-1 datasets for SSL Pre-training)
+# - data/00_raw/downstream/FP/   (Fingerprint Validation & Downstream classification tasks)
+# - data/00_raw/downstream/HW/   (High-Wavenumber Validation & Downstream classification tasks)
+# - data/00_raw/downstream/FR/   (Full-Range Validation & Downstream classification tasks)
+
+defaults:
+  despike:
+    window: 7
+    z_threshold: 5.5
+  savgol:
+    window_length: 11
+    polyorder: 3
+  als_baseline:
+    lam: 100000.0
+    p: 0.005
+    niter: 12
+
+normalizations:
+  - minmax      # [0, 1] per spectrum (ViT / SMAE & standard scaling)
+  - snv         # Standard Normal Variate (mean=0, std=1, ResNet / Barlow Twins)
+  - l2          # Unit L2 vector norm (||x||=1)
+  - area        # Total integrated intensity = 1
+
+regions:
+  fingerprint:
+    min_cm1: 650.0
+    max_cm1: 1750.0
+    n_points: 1000
+    description: "Biological Fingerprint region (proteins, nucleic acids, lipids, carbohydrates)"
+  ch_core:
+    min_cm1: 2800.0
+    max_cm1: 3045.0
+    n_points: 500
+    description: "Core aliphatic/olefinic C-H stretching band (compatible with all HW + Full-Range datasets up to 3049 cm-1)"
+  hw_extended:
+    min_cm1: 2765.0
+    max_cm1: 3250.0
+    n_points: 500
+    description: "Extended High-Wavenumber overlap across all 81 FAIRaman H5 maps + RiverD Oral HW (C-H stretch + Amide B + O-H water onset)"
+  hw_broad:
+    min_cm1: 2615.0
+    max_cm1: 3900.0
+    n_points: 800
+    description: "Broad High-Wavenumber window (PDO 532nm + RiverD Meat 671nm + RiverD Oral HW: full C-H and O-H water bands)"
+
+datasets:
+  # ==========================================================
+  # === 1. FINGERPRINT (FP) PRE-TRAINING COHORTS =============
+  # ==========================================================
+  deepr:
+    role: pretrain_fp
+    region_folder: FP
+    supported_regions: [fingerprint]
+    raw_path: data/00_raw/pretrain/FP/deepr
+    format: matlab_mat
+    n_files: 2
+    n_spectra: 172312
+    wavenumber_range: [498.26, 1799.90]
+    preprocessing_policy: pre_cleaned     # Paired Low-SNR (0.1s) inputs and High-SNR (1.0s) outputs
+    label_granularity: unlabeled
+
+  raman_mae:
+    role: pretrain_fp
+    region_folder: FP
+    supported_regions: [fingerprint]
+    raw_path: data/00_raw/pretrain/FP/raman_mae
+    format: matlab_mat
+    n_files: 3
+    n_spectra: 52721
+    n_valid_spectra: 42925
+    wavenumber_range: [597.32, 1963.25]
+    preprocessing_policy: pre_cleaned     # Baseline-corrected and L2-normalized (CELLS has 4,355 NaN rows to filter)
+    label_granularity: unlabeled
+
+  spectrabreast_fp:
+    role: pretrain_fp
+    region_folder: FP
+    supported_regions: [fingerprint]
+    raw_path: data/00_raw/pretrain/FP/spectrabreast_fp
+    interim_path: data/01_interim/spectrabreast_fp
+    format: fairaman_h5
+    n_files: 4
+    n_spectra: 52992
+    wavenumber_range: [660.22, 1759.36]
+    preprocessing_policy: needs_full_clean
+    label_granularity: map_level_weak     # All 4 maps are labeled TT at map level without pixel masks
+
+  # ==========================================================
+  # === 2. HIGH-WAVENUMBER (HW) PRE-TRAINING COHORTS =========
+  # ==========================================================
+  spectrabreast_hw:
+    role: pretrain_hw
+    region_folder: HW
+    supported_regions: [ch_core, hw_extended]
+    raw_path: data/00_raw/pretrain/HW/spectrabreast_hw
+    interim_path: data/01_interim/spectrabreast_hw
+    format: fairaman_h5
+    n_files: 15
+    n_spectra: 136801
+    wavenumber_range: [2488.85, 3487.65]
+    common_overlap: [2763.91, 3258.78]
+    preprocessing_policy: auto_per_file   # 14 RAW files (positive CCD counts) vs 1 file (SB015HT 2) already baseline-subtracted
+    label_granularity: map_level_weak     # Map-level Healthy/Tumor tag only (no pixel-level segmentation mask)
+
+  pdo_hw_maps:
+    role: pretrain_hw
+    region_folder: HW
+    supported_regions: [ch_core, hw_extended, hw_broad]
+    raw_path: data/00_raw/pretrain/HW/pdo_hw_maps
+    interim_path: data/01_interim/pdo_hw_maps
+    format: fairaman_h5
+    n_files: 6
+    n_spectra: 194444
+    wavenumber_range: [2603.29, 3915.42]
+    common_overlap: [2614.74, 3906.18]
+    preprocessing_policy: auto_per_file   # 5 RAW files (positive CCD counts) vs 1 file (CMA64 PDO2) already baseline-subtracted
+    label_granularity: single_class       # All maps are Tumoral PDO (IDC)
+
+  riverd_meat_hw:
+    role: pretrain_hw
+    region_folder: HW
+    supported_regions: [ch_core, hw_extended, hw_broad]
+    raw_path: data/00_raw/pretrain/HW/riverd_meat_hw
+    interim_path: data/01_interim/riverd_meat_hw
+    format: fairaman_h5
+    n_files: 60
+    n_spectra: 1200
+    wavenumber_range: [2520.0, 4000.0]
+    common_overlap: [2520.0, 4000.0]
+    preprocessing_policy: needs_full_clean # All 60 files are RAW detector counts
+    label_granularity: unlabeled
+
+  # ==========================================================
+  # === 3. FULL-RANGE (FR) PRE-TRAINING COHORTS ==============
+  # ==========================================================
+  trophy_jena:
+    description: "Trophy Jena Breast Tissue Raman Maps (2 patients, 10 maps 120x120 covering both FP and CH/HW)"
+    role: pretrain_fr
+    region_folder: FR
+    supported_regions: [fingerprint, ch_core, hw_extended]
+    raw_path: data/00_raw/pretrain/FR/trophy_jena
+    format: matlab_mat
+    n_files: 10
+    n_spectra: 115913
+    n_total_pixels: 144000
+    wavenumber_range_raw: [200.0, 3200.0]
+    wavenumber_range: [648.68, 3050.44]
+    preprocessing_policy: both_available  # Raw/ (200-3200 cm-1, 1024 pts) and Preprocessed/ (648.68-3050.44 cm-1, 820 pts)
+    label_granularity: pixel_level_2patients # Only 2 patients (Paz 1, Paz 2) -> strictly restricted to Pre-Training
+
+  # ==========================================================
+  # === 4. FINGERPRINT (FP) VALIDATION & DOWNSTREAM ==========
+  # ==========================================================
+  ibd:
+    role: downstream_fp
+    region_folder: FP
+    supported_regions: [fingerprint]
+    raw_path: data/00_raw/downstream/FP/ibd
+    format: excel_xlsx
+    n_files: 1
+    n_spectra: 228
+    wavenumber_range: [403.89, 1754.26]
+    preprocessing_policy: pre_cleaned
+    label_granularity: spectrum_level     # 228 patient-averaged spectra (from 962 replicates): 77 HC vs 151 IBD
+
+  bacteria_id:
+    role: downstream_fp
+    region_folder: FP
+    supported_regions: [fingerprint]
+    raw_path: data/00_raw/downstream/FP/bacteria_id
+    format: numpy_npy
+    n_files: 5
+    n_spectra: 78500
+    n_downstream_finetune: 3000
+    n_downstream_test: 3000
+    wavenumber_range: [381.98, 1792.40]
+    preprocessing_policy: pre_cleaned     # Scaled in [0, 1]; X_finetune (3,000) + X_test (3,000) used for downstream evaluation
+    label_granularity: spectrum_level     # 30 bacterial/yeast isolate classes
+
+  # ==========================================================
+  # === 5. HIGH-WAVENUMBER (HW) VALIDATION & DOWNSTREAM ======
+  # ==========================================================
+  riverd_oral_hw:
+    description: "RiverD Oral Cavity Tumor Surgery Resection Specimens (fiber-optic needle probe, 4 independent cohorts, 186 samples)"
+    role: downstream_hw
+    region_folder: HW
+    supported_regions: [ch_core, hw_extended, hw_broad]
+    raw_path: data/00_raw/downstream/HW/riverd_oral_hw
+    format: excel_xlsx
+    n_files: 4
+    n_spectra: 8422
+    wavenumber_range: [2600.0, 4000.0]
+    preprocessing_policy: multi_stage     # Provides RamanData_c (calibrated), RamanData_pc (probe-corrected), RamanData_bc (baseline-corrected)
+    label_granularity: spectrum_level     # 5,899 Normal (134 samples) vs 2,523 Tumor (85 samples) across 4 sources
+
+  # ==========================================================
+  # === 6. FULL-RANGE (FR) VALIDATION & DOWNSTREAM ===========
+  # ==========================================================
+  dataset_renzo:
+    description: "Murine Bone Raman Dataset (47 samples: femur/skull/tibia & genetic pathology WT/HSCT/oc-oc/Rankl-ko)"
+    role: downstream_fr
+    region_folder: FR
+    supported_regions: [fingerprint, ch_core]
+    raw_path: data/00_raw/downstream/FR/dataset_renzo
+    format: csv
+    n_files: 1
+    n_spectra: 3200
+    n_samples: 47
+    wavenumber_range: [380.0, 3049.0]
+    preprocessing_policy: pre_cleaned     # Baseline-subtracted & normalized
+    label_granularity: spectrum_level     # 3,200 spectra across 47 mice: bone (3 classes), pathology (4 classes)

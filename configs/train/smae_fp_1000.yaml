@@ -1,0 +1,47 @@
+# ==============================================================================
+# SPECTRA-BREAST — 1D-ViT (SMAE) Fingerprint Reference Configuration
+# Exact Deliverable 3.2 Exp. 9 architecture (4,485,604 params) on FP (650-1750).
+# ==============================================================================
+
+experiment_name: "smae_fp_1000pt_minmax"
+seed: 42
+
+data:
+  npz_path: "data/02_ready/pretrain/FP/pretrain_vit_fp_1000.npz"
+  regime: "FP"
+  wavenumber_range: [650.0, 1750.0]
+  sampling_alpha: 0.5
+  val_fraction: 0.02
+  num_workers: 4
+
+model:
+  spectrum_size: 1000
+  patch_size: 100
+  mask_ratio: 0.50
+  mask_mode: "random"
+  embed_dim: 256
+  depth: 8
+  num_heads: 8
+  mlp_dim: 512
+  decoder_embed_dim: 128
+  decoder_depth: 1
+  decoder_num_heads: 8
+  decoder_mlp_dim: 512
+  dropout: 0.0
+
+training:
+  epochs: 500
+  batch_size: 256
+  samples_per_epoch: null
+  optimizer: "adamw"
+  lr: 1.0e-4
+  min_lr: 1.0e-6
+  weight_decay: 1.0e-4
+  warmup_epochs: 10
+  grad_clip_norm: 1.0
+  use_amp: true
+
+logging:
+  output_dir: "experiments/pretrain_smae_fp_1000"
+  save_every_epochs: 50
+  plot_recon_epochs: [1, 10, 50, 100, 250, 500]

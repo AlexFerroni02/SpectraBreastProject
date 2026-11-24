@@ -1,0 +1,51 @@
+# ==============================================================================
+# SPECTRA-BREAST — 1D-ViT (SMAE) High-Wavenumber Pre-Training Configuration
+# Exact 1-to-1 match to `Deliverable/Pretrain/MAE_100_patches.ipynb` (Exp. 9:
+# 4,485,604 params, 500 epochs, patch_size=100, mask_ratio=0.50, AdamW lr=1e-4),
+# adapted to the harmonized 448,358-spectrum HW corpus (`2765.00 - 3200.00 cm^-1`).
+# ==============================================================================
+
+experiment_name: "smae_hw_1000pt_minmax"
+seed: 42
+
+data:
+  npz_path: "data/02_ready/pretrain/HW/pretrain_vit_hw_1000.npz"
+  regime: "HW"
+  wavenumber_range: [2765.0, 3200.0]
+  # Temperature-balanced sampling: alpha=0.5 (square-root balancing) or 1.0 (uniform)
+  sampling_alpha: 0.5
+  val_fraction: 0.02
+  num_workers: 4
+
+model:
+  spectrum_size: 1000
+  patch_size: 100           # 10 non-overlapping patches of 100 pts (MAE_100_patches.ipynb)
+  mask_ratio: 0.50          # 50% masked patches (5 masked / 5 visible)
+  mask_mode: "random"       # "random" (exact MAE_100_patches.ipynb) or "block"
+  embed_dim: 256
+  depth: 8
+  num_heads: 8
+  mlp_dim: 512
+  decoder_embed_dim: 128
+  decoder_depth: 1
+  decoder_num_heads: 8
+  decoder_mlp_dim: 512
+  dropout: 0.0
+
+training:
+  epochs: 500               # Exact MAE_100_patches.ipynb (Exp. 9)
+  batch_size: 256
+  samples_per_epoch: null   # Full pass over all 448,358 HW spectra per epoch
+  optimizer: "adamw"
+  lr: 1.0e-4
+  min_lr: 1.0e-6
+  weight_decay: 1.0e-4
+  warmup_epochs: 5
+  grad_clip_norm: 1.0
+  use_amp: true             # Automatic mixed precision (fp16 on V100, bf16 on A100/H100)
+
+logging:
+  output_dir: "experiments/pretrain_smae_hw_1000"
+  save_every_epochs: 50
+  # Matches MAE_100_patches.ipynb line 388 (Epoch 1 + every 50 epochs)
+  plot_recon_epochs: [1, 50, 100, 150, 200, 250, 300, 350, 400, 450, 500]
