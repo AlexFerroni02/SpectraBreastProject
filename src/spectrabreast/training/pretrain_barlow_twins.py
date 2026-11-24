@@ -27,6 +27,7 @@ from spectrabreast.models.resnet_barlow_twins import BarlowTwins1D
 from spectrabreast.training.plotting import (
     plot_barlow_twins_crosscorr,
     plot_barlow_twins_learning_curves,
+    save_experiment_notebook,
 )
 from spectrabreast.training.pretrain_smae import (
     PretrainTensorDataset,
@@ -408,16 +409,36 @@ def train_barlow_twins_from_config(
             plt.close("all")
 
     hist_df = pd.DataFrame(history)
+    lc_path = fig_dir / "barlow_twins_learning_curves.png"
     plot_barlow_twins_learning_curves(
         hist_df,
         title=f"Barlow Twins ({m_cfg['backbone']} PyTorch) Pre-Training Dynamics",
-        out_path=fig_dir / "barlow_twins_learning_curves.png",
+        out_path=lc_path,
     )
     plt.close("all")
+
+    # Save self-contained executed notebook inside the experiment directory
+    all_figs = [lc_path] + sorted(fig_dir.glob("barlow_twins_crosscorr_epoch_*.png"))
+    summary_txt = (
+        f"Model: BarlowTwins1D ({m_cfg['backbone']}, pool={m_cfg['pool_mode']}, Encoder={n_enc:,d} params)\n"
+        f"Data: {npz_path.name} ({spectra.shape[0]:,d} spectra across {len(source_names)} sources)\n"
+        f"Best Val Loss: {best_val_loss:.4f} | Final Diag={hist_df['train_diag_mean'].iloc[-1]:.4f} | Final |Off|={hist_df['train_off_abs_mean'].iloc[-1]:.4f}\n"
+        f"Best Encoder Checkpoint: {out_dir / 'best_resnet_encoder.pth'}"
+    )
+    nb_path = save_experiment_notebook(
+        out_dir=out_dir,
+        model_type=f"1D-{m_cfg['backbone'].upper()} (Barlow Twins PyTorch)",
+        cfg=cfg,
+        history_df=hist_df,
+        figure_paths=all_figs,
+        summary_text=summary_txt,
+    )
+    print(f"[BarlowTwins] Saved executed notebook -> {nb_path}")
 
     return {
         "output_dir": out_dir,
         "best_val_loss": best_val_loss,
         "history_df": hist_df,
         "best_encoder_checkpoint": out_dir / "best_resnet_encoder.pth",
+        "executed_notebook": nb_path,
     }

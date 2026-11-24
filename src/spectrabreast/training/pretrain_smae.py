@@ -27,7 +27,11 @@ from torch.utils.data import DataLoader, Dataset, WeightedRandomSampler
 
 from spectrabreast.data.splits import compute_temperature_sampling_weights
 from spectrabreast.models.vit_smae import SpectralMAE
-from spectrabreast.training.plotting import plot_smae_learning_curves, plot_smae_reconstructions
+from spectrabreast.training.plotting import (
+    plot_smae_learning_curves,
+    plot_smae_reconstructions,
+    save_experiment_notebook,
+)
 
 __all__ = ["PretrainTensorDataset", "train_smae_from_config"]
 
@@ -319,16 +323,36 @@ def train_smae_from_config(
 
     # Final learning curves figure
     hist_df = pd.DataFrame(history)
+    lc_path = fig_dir / "smae_learning_curves.png"
     plot_smae_learning_curves(
         hist_df,
         title=f"SMAE Pre-Training Performance Metrics ({cfg['data']['regime']} — {cfg['experiment_name']})",
-        out_path=fig_dir / "smae_learning_curves.png",
+        out_path=lc_path,
     )
     plt.close("all")
+
+    # Save self-contained executed notebook inside the experiment directory
+    all_figs = [lc_path] + sorted(fig_dir.glob("smae_reconstruction_epoch_*.png"))
+    summary_txt = (
+        f"Model: SpectralMAE ({n_params:,d} parameters)\n"
+        f"Data: {npz_path.name} ({spectra.shape[0]:,d} spectra across {len(source_names)} sources)\n"
+        f"Best Val Masked MSE: {best_val_mse:.6f} | Final Val Cosine Sim: {hist_df['val_cos'].iloc[-1]:.4f}\n"
+        f"Best Checkpoint: {out_dir / 'best_smae_model.pth'}"
+    )
+    nb_path = save_experiment_notebook(
+        out_dir=out_dir,
+        model_type="1D-ViT (SpectralMAE)",
+        cfg=cfg,
+        history_df=hist_df,
+        figure_paths=all_figs,
+        summary_text=summary_txt,
+    )
+    print(f"[SMAE] Saved executed notebook -> {nb_path}")
 
     return {
         "output_dir": out_dir,
         "best_val_mse": best_val_mse,
         "history_df": hist_df,
         "best_checkpoint": out_dir / "best_smae_model.pth",
+        "executed_notebook": nb_path,
     }

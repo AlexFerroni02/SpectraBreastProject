@@ -6,10 +6,14 @@ Publication-grade pre-training diagnostic plots for `1D-ViT (SMAE)` and
 
 from __future__ import annotations
 
+import base64
+import json
 from pathlib import Path
+from typing import Any
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import yaml
 
 __all__ = [
     "plot_smae_learning_curves",
@@ -17,6 +21,7 @@ __all__ = [
     "plot_barlow_twins_augmented_views",
     "plot_barlow_twins_learning_curves",
     "plot_barlow_twins_crosscorr",
+    "save_experiment_notebook",
 ]
 
 
@@ -246,3 +251,112 @@ def plot_barlow_twins_crosscorr(
         out_path.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(out_path, dpi=300, bbox_inches="tight")
     return fig
+
+
+def save_experiment_notebook(
+    out_dir: Path,
+    model_type: str,
+    cfg: dict[str, Any],
+    history_df: pd.DataFrame,
+    figure_paths: list[Path],
+    summary_text: str,
+) -> Path:
+    """
+    Automatically save a self-contained executed Jupyter notebook
+    (`out_dir / 'notebook_eseguito.ipynb'`) with exact config, training metrics
+    summary, and all rendered 300-DPI figures embedded inline.
+    """
+    def _md(lines: list[str]) -> dict[str, Any]:
+        return {
+            "cell_type": "markdown",
+            "metadata": {},
+            "source": [line + "\n" for line in lines[:-1]] + ([lines[-1]] if lines else []),
+        }
+
+    def _code(
+        lines: list[str],
+        exec_count: int,
+        text_out: str | None = None,
+        html_out: str | None = None,
+        png_path: Path | None = None,
+    ) -> dict[str, Any]:
+        outputs: list[dict[str, Any]] = []
+        if text_out:
+            outputs.append({
+                "name": "stdout",
+                "output_type": "stream",
+                "text": [line + "\n" for line in text_out.splitlines()],
+            })
+        if html_out:
+            outputs.append({
+                "data": {"text/html": [line + "\n" for line in html_out.splitlines()], "text/plain": ["<DataFrame>"]},
+                "execution_count": exec_count,
+                "metadata": {},
+                "output_type": "execute_result",
+            })
+        if png_path is not None and png_path.exists():
+            b64 = base64.b64encode(png_path.read_bytes()).decode("ascii")
+            outputs.append({
+                "data": {"image/png": b64, "text/plain": [f"<Figure {png_path.name}>"]},
+                "metadata": {},
+                "output_type": "display_data",
+            })
+        return {
+            "cell_type": "code",
+            "execution_count": exec_count,
+            "metadata": {},
+            "outputs": outputs,
+            "source": [line + "\n" for line in lines[:-1]] + ([lines[-1]] if lines else []),
+        }
+
+    cfg_str = yaml.safe_dump(cfg, sort_keys=False)
+    sample_rows = pd.concat([history_df.head(5), history_df.tail(5)]).drop_duplicates(subset=["epoch"])
+
+    cells: list[dict[str, Any]] = [
+        _md([
+            f"# Executed Pre-Training Report — `{model_type}` (`{cfg.get('experiment_name', out_dir.name)}`)",
+            "",
+            f"- **Output Directory**: `{out_dir}`",
+            f"- **Total Epochs Completed**: `{len(history_df)}`",
+            f"- **Data Archive**: `{cfg['data']['npz_path']}`",
+        ]),
+        _md(["## 1. Exact Experiment Configuration (`config_used.yaml`)"]),
+        _code(
+            ["from pathlib import Path", "print(Path('config_used.yaml').read_text())"],
+            exec_count=1,
+            text_out=cfg_str,
+        ),
+        _md(["## 2. Training Summary & Epoch Metrics (`history.csv`)"]),
+        _code(
+            ["import pandas as pd", "from IPython.display import display", "df = pd.read_csv('history.csv')", "display(pd.concat([df.head(5), df.tail(5)]).drop_duplicates('epoch'))"],
+            exec_count=2,
+            text_out=summary_text,
+            html_out=sample_rows.to_html(index=False),
+        ),
+    ]
+
+    exec_idx = 3
+    for fp in figure_paths:
+        if fp.exists():
+            cells.append(_md([f"## Figure: `{fp.name}`"]))
+            cells.append(
+                _code(
+                    ["from IPython.display import Image, display", f"display(Image(filename='figures/{fp.name}'))"],
+                    exec_count=exec_idx,
+                    png_path=fp,
+                )
+            )
+            exec_idx += 1
+
+    nb = {
+        "cells": cells,
+        "metadata": {
+            "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
+            "language_info": {"name": "python", "version": "3.11"},
+        },
+        "nbformat": 4,
+        "nbformat_minor": 5,
+    }
+    nb_path = out_dir / "notebook_eseguito.ipynb"
+    nb_path.write_text(json.dumps(nb, indent=2), encoding="utf-8")
+    return nb_path
