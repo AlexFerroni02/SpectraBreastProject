@@ -27,6 +27,18 @@ def main() -> None:
         default=None,
         help="Optional override for total number of training epochs.",
     )
+    parser.add_argument(
+        "--out-dir",
+        type=str,
+        default=None,
+        help="Optional custom experiment output directory (prevents overwriting previous runs).",
+    )
+    parser.add_argument(
+        "--batch-size",
+        type=int,
+        default=None,
+        help="Optional batch size override (e.g. 512 or 1024 on A100).",
+    )
     args = parser.parse_args()
 
     repo_root = Path(__file__).resolve().parents[1]
@@ -35,6 +47,8 @@ def main() -> None:
         repo_root=repo_root,
         resume=not args.no_resume,
         max_epochs_override=args.epochs,
+        output_dir_override=args.out_dir,
+        batch_size_override=args.batch_size,
     )
     print(f"\n[DONE] Best Val Barlow Twins Loss: {res['best_val_loss']:.4f}")
     print(f"[DONE] Best ResNet Encoder Checkpoint: {res['best_encoder_checkpoint']}")

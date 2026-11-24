@@ -73,11 +73,17 @@ def train_smae_from_config(
     repo_root: str | Path | None = None,
     resume: bool = True,
     max_epochs_override: int | None = None,
+    output_dir_override: str | None = None,
+    batch_size_override: int | None = None,
 ) -> dict[str, Any]:
     """Run full `SpectralMAE` pre-training from a YAML config file."""
     cfg_path = Path(config_path).resolve()
     with open(cfg_path, "r", encoding="utf-8") as f:
         cfg = yaml.safe_load(f)
+    if output_dir_override is not None:
+        cfg["logging"]["output_dir"] = output_dir_override
+    if batch_size_override is not None:
+        cfg["training"]["batch_size"] = int(batch_size_override)
 
     root = Path(repo_root).resolve() if repo_root is not None else cfg_path.parents[2]
     _seed_everything(int(cfg.get("seed", 42)))
