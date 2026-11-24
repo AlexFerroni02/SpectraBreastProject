@@ -351,7 +351,7 @@ def train_barlow_twins_from_config(
                 val_loss_sum += float(out["loss"].item())
                 val_steps += 1
                 if last_cc is None:
-                    last_cc = out["cross_corr"].cpu().numpy()
+                    last_cc = out["cross_corr"].float().cpu().numpy()
                     last_stds = out["z1"].float().std(dim=0, unbiased=False).cpu().numpy()
 
         val_loss = val_loss_sum / max(1, val_steps)

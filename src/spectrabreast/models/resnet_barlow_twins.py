@@ -181,7 +181,7 @@ class BarlowTwinsLoss(nn.Module):
             "diag_mean": diag_mean,
             "off_abs_mean": off_abs_mean,
             "emb_std_mean": emb_std_mean,
-            "cross_corr": c.detach(),
+            "cross_corr": c.float().detach(),
         }
 
 
