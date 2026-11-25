@@ -1,0 +1,38 @@
+# ==============================================================================
+# Fine-Tuning LP-FT Config: Pre-Trained 1D-ViT (SMAE HW) -> RiverD Oral Surgery
+# 8,422 spectra across 186 patients (5-Fold StratifiedGroupKFold, 0% leakage)
+# ==============================================================================
+experiment_name: "ft_smae_hw_on_riverd_oral_hw"
+seed: 42
+
+data:
+  benchmark: "riverd_oral_hw"
+  regime: "default"              # Exact 2765.00 - 3200.00 cm^-1 (1,000 pts, matches SMAE-HW!)
+
+model:
+  type: "smae"
+  pretrained_checkpoint: "experiments/smae_hw_exp1_p100_m50/best_smae_model.pth"
+  head_hidden_dim: 128
+  head_dropout: 0.35
+
+training:
+  n_folds: 5
+  run_scratch_baseline: true     # Runs identical ViT from scratch on the exact same 5 folds!
+  batch_size: 64
+  lp_epochs: 30                  # Stage 1: Linear Probing (frozen encoder)
+  lp_lr: 1.0e-3
+  ft_epochs: 80                  # Stage 2: Full Fine-Tuning
+  ft_lr: 1.0e-5
+  scratch_epochs: 100
+  scratch_lr: 1.0e-4
+  weight_decay: 1.0e-4
+  early_stopping_patience: 20
+  use_augment: true
+  aug_max_shift: 3
+  aug_max_mask: 40
+  aug_noise_std: 0.002
+  run_integrated_gradients: true
+  ig_steps: 50
+
+logging:
+  output_dir: "experiments/ft_smae_hw_on_riverd_oral_hw"

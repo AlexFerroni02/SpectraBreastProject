@@ -1,0 +1,41 @@
+# ==============================================================================
+# Fine-Tuning LP-FT Config: Pre-Trained 1D-ResNet-34 (Barlow Twins) -> Bacteria-ID
+# 30 pathogenic species (3,000 finetune 5-Fold Val + 3,000 clinical held-out test)
+# ==============================================================================
+experiment_name: "ft_barlow_twins_on_bacteria_id"
+seed: 42
+
+data:
+  benchmark: "bacteria_id"
+  regime: "native"               # "native" (382-1792 cm^-1) or "default" (650-1750 cm^-1)
+
+model:
+  type: "barlow_twins"
+  pretrained_checkpoint: "experiments/bt_exp1_resnet34_bs512/best_resnet_encoder.pth"
+  backbone: "resnet34"
+  pool_mode: "avgpool2_flatten"
+  head_hidden_dim: 256
+  head_dropout: 0.35
+
+training:
+  n_folds: 5
+  run_scratch_baseline: true
+  batch_size: 32
+  lp_epochs: 40
+  lp_lr: 1.0e-3
+  ft_epochs: 120
+  ft_lr: 2.0e-5
+  scratch_epochs: 120
+  scratch_lr: 1.0e-4
+  freeze_bn: true
+  weight_decay: 1.0e-4
+  early_stopping_patience: 25
+  use_augment: true
+  aug_max_shift: 5
+  aug_max_mask: 40
+  aug_noise_std: 0.002
+  run_integrated_gradients: false
+  ig_steps: 50
+
+logging:
+  output_dir: "experiments/ft_barlow_twins_on_bacteria_id"

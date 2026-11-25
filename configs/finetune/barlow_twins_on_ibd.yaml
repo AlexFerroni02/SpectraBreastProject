@@ -1,0 +1,41 @@
+# ==============================================================================
+# Fine-Tuning LP-FT Config: Pre-Trained 1D-ResNet-34 (Barlow Twins) -> IBD Plasma
+# 228 clinical subjects (5-Fold StratifiedGroupKFold, 0% patient leakage)
+# ==============================================================================
+experiment_name: "ft_barlow_twins_on_ibd"
+seed: 42
+
+data:
+  benchmark: "ibd"
+  regime: "native"               # "native" (403.9-1754.3 cm^-1) or "default" (650-1750 cm^-1)
+
+model:
+  type: "barlow_twins"
+  pretrained_checkpoint: "experiments/bt_exp1_resnet34_bs512/best_resnet_encoder.pth"
+  backbone: "resnet34"
+  pool_mode: "avgpool2_flatten"
+  head_hidden_dim: 256
+  head_dropout: 0.55
+
+training:
+  n_folds: 5
+  run_scratch_baseline: true
+  batch_size: 16
+  lp_epochs: 30
+  lp_lr: 5.0e-4
+  ft_epochs: 100
+  ft_lr: 1.0e-5
+  scratch_epochs: 120
+  scratch_lr: 1.0e-4
+  freeze_bn: true
+  weight_decay: 5.0e-4
+  early_stopping_patience: 25
+  use_augment: true
+  aug_max_shift: 2
+  aug_max_mask: 40
+  aug_noise_std: 0.001
+  run_integrated_gradients: true
+  ig_steps: 50
+
+logging:
+  output_dir: "experiments/ft_barlow_twins_on_ibd"

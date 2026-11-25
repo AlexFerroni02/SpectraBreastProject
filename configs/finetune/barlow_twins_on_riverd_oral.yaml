@@ -1,0 +1,41 @@
+# ==============================================================================
+# Fine-Tuning LP-FT Config: Pre-Trained 1D-ResNet-34 (Barlow Twins) -> RiverD Oral HW
+# 8,422 spectra across 186 patients (5-Fold StratifiedGroupKFold, 0% leakage)
+# ==============================================================================
+experiment_name: "ft_barlow_twins_on_riverd_oral_hw"
+seed: 42
+
+data:
+  benchmark: "riverd_oral_hw"
+  regime: "default"              # "default" (2765-3200 cm^-1) or "broad" (2600-4000 cm^-1)
+
+model:
+  type: "barlow_twins"
+  pretrained_checkpoint: "experiments/bt_exp1_resnet34_bs512/best_resnet_encoder.pth"
+  backbone: "resnet34"
+  pool_mode: "avgpool2_flatten"
+  head_hidden_dim: 256
+  head_dropout: 0.45
+
+training:
+  n_folds: 5
+  run_scratch_baseline: true
+  batch_size: 64
+  lp_epochs: 20
+  lp_lr: 5.0e-4
+  ft_epochs: 80
+  ft_lr: 2.0e-5
+  scratch_epochs: 100
+  scratch_lr: 1.0e-4
+  freeze_bn: true                # Keeps pre-trained BatchNorm running stats frozen!
+  weight_decay: 1.0e-4
+  early_stopping_patience: 20
+  use_augment: true
+  aug_max_shift: 3
+  aug_max_mask: 40
+  aug_noise_std: 0.002
+  run_integrated_gradients: true
+  ig_steps: 50
+
+logging:
+  output_dir: "experiments/ft_barlow_twins_on_riverd_oral_hw"

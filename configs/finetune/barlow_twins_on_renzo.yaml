@@ -1,0 +1,41 @@
+# ==============================================================================
+# Fine-Tuning LP-FT Config: Pre-Trained 1D-ResNet-34 (Barlow Twins) -> Dataset Renzo
+# 3,200 spectra across 47 mice (4 genetic pathologies: WT, Rankl ko, oc/oc, HSCT)
+# ==============================================================================
+experiment_name: "ft_barlow_twins_on_dataset_renzo"
+seed: 42
+
+data:
+  benchmark: "dataset_renzo"
+  regime: "FR"                   # "FR" (380-3049 cm^-1) | "FP" (650-1750) | "CH" (2800-3045)
+
+model:
+  type: "barlow_twins"
+  pretrained_checkpoint: "experiments/bt_exp1_resnet34_bs512/best_resnet_encoder.pth"
+  backbone: "resnet34"
+  pool_mode: "avgpool2_flatten"
+  head_hidden_dim: 256
+  head_dropout: 0.40
+
+training:
+  n_folds: 5
+  run_scratch_baseline: true
+  batch_size: 32
+  lp_epochs: 30
+  lp_lr: 5.0e-4
+  ft_epochs: 100
+  ft_lr: 2.0e-5
+  scratch_epochs: 100
+  scratch_lr: 1.0e-4
+  freeze_bn: true
+  weight_decay: 1.0e-4
+  early_stopping_patience: 20
+  use_augment: true
+  aug_max_shift: 3
+  aug_max_mask: 40
+  aug_noise_std: 0.002
+  run_integrated_gradients: true
+  ig_steps: 50
+
+logging:
+  output_dir: "experiments/ft_barlow_twins_on_dataset_renzo"

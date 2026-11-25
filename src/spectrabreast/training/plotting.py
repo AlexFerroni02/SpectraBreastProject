@@ -310,15 +310,16 @@ def save_experiment_notebook(
         }
 
     cfg_str = yaml.safe_dump(cfg, sort_keys=False)
-    sample_rows = pd.concat([history_df.head(5), history_df.tail(5)]).drop_duplicates(subset=["epoch"])
+    sample_rows = pd.concat([history_df.head(6), history_df.tail(6)]).drop_duplicates()
+    data_label = cfg.get("data", {}).get("npz_path", cfg.get("data", {}).get("benchmark", "N/A"))
 
     cells: list[dict[str, Any]] = [
         _md([
-            f"# Executed Pre-Training Report — `{model_type}` (`{cfg.get('experiment_name', out_dir.name)}`)",
+            f"# Executed Experiment Report — `{model_type}` (`{cfg.get('experiment_name', out_dir.name)}`)",
             "",
             f"- **Output Directory**: `{out_dir}`",
-            f"- **Total Epochs Completed**: `{len(history_df)}`",
-            f"- **Data Archive**: `{cfg['data']['npz_path']}`",
+            f"- **Rows Logged**: `{len(history_df)}`",
+            f"- **Dataset / Corpus**: `{data_label}`",
         ]),
         _md(["## 1. Exact Experiment Configuration (`config_used.yaml`)"]),
         _code(
